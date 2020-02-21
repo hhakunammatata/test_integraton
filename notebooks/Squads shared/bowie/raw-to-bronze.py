@@ -189,7 +189,7 @@ def merge_files_into_table(database, table, files):
     try:
         deduped_df = df.withColumn("guid", col("header.guid")) \
             .filter(col("guid").isNotNull()) \
-            .dropDuplicates(["guid"]).cache()
+            .dropDuplicates(["guid"])
     except AnalysisException:
         logging.info("Dataframe does not have guid column")
         return False
